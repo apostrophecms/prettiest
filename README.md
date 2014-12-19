@@ -27,7 +27,7 @@ var data = require('prettiest')({ json: __dirname + '/mydatafile.json' });
 
 If you don't, the JSON file lives in the same directory with your app, and will be called `data.json`.
 
-`prettiest` also creates empty directories for use as locks. These have the same name as the JSON file, plus `.lock`.
+`prettiest` also creates a lock file, which will have the same name as the JSON file, plus `.lock` at the end. To prevent race conditions, the lock file is not removed. Just leave it be.
 
 ## Caveats
 
@@ -35,7 +35,7 @@ If you don't, the JSON file lives in the same directory with your app, and will 
 
 * You don't want to use this in a web application. Duh. It's a simple, synchronous bit of magic for use in utilities with short execution times.
 
-* You don't want to use this in a super-long-running script. It's meant for utilities that do a relatively simple job and then exit.
+* You don't want to use this in a super-long-running script, because it only saves your data to disk at the very end. It's meant for utilities that do a relatively simple job and then exit.
 
 ## Questions
 

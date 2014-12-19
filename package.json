@@ -26,6 +26,6 @@
   },
   "homepage": "https://github.com/punkave/prettiest",
   "dependencies": {
-    "sleep": "^1.2.0"
+    "fs-ext": "^0.4.2"
   }
 }

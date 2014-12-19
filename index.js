@@ -1,5 +1,4 @@
-var fs = require('fs');
-var sleep = require('sleep');
+var fs = require('fs-ext');
 var dirname = require('path').dirname;
 
 module.exports = function(options) {
@@ -19,23 +18,24 @@ module.exports = function(options) {
 
   return data;
 
-  // Use a classic directory creation lock. All filesystems
-  // scrupulously avoid allowing two directories with the
-  // same name
+  var lockFd;
 
   function lock() {
-    while(true) {
-      try {
-        fs.mkdirSync(lockFile);
-        return;
-      } catch (e) {
-        sleep.usleep(50000);
-      }
-    }
+    lockFd = fs.openSync(lockFile, 'a');
+    fs.flockSync(lockFd, 'ex');
   }
 
   function unlock() {
-    fs.rmdirSync(lockFile);
+    fs.flockSync(lockFd, 'un');
+    try {
+      fs.closeSync(lockFd);
+      // We do NOT delete the lockfile. That can cause
+      // race conditions.
+    } catch (e) {
+      // Another instance may have jumped on the file,
+      // but as we've already unlocked, we don't
+      // care anymore
+    }
   }
 
   function load() {
