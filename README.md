@@ -23,7 +23,9 @@ If you're replacing a shell script with something a little smarter, this module 
 
 You can specify where the JSON data file lives:
 
+```javascript
 var data = require('prettiest')({ json: __dirname + '/mydatafile.json' });
+```
 
 If you don't, the JSON file lives in the same directory with your app, and will be called `data.json`.
 
