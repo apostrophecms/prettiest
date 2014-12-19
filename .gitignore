@@ -1,0 +1,5 @@
+npm-debug.log
+*.DS_Store
+node_modules
+tests/data.json
+tests/data.json.lock
