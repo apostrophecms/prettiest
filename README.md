@@ -19,6 +19,10 @@ console.log('I have been run ' + data.count + ' times.');
 
 If you're replacing a shell script with something a little smarter, this module is a great companion for [shelljs](http://documentup.com/arturadib/shelljs).
 
+## Install
+
+`npm install prettiest`
+
 ## Options
 
 You can specify where the JSON data file lives:
