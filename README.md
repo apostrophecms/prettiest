@@ -33,7 +33,7 @@ If you don't, the JSON file lives in the same directory with your app, and will 
 
 ## Caveats
 
-* The save-and-unlock behavior lives in a `process.on('exit')` handler. If your code crashes node hard enough, that might not run and the lock folder might stick around until someone takes pity on it and deletes it.
+* The save-and-unlock behavior lives in a `process.on('exit')` handler. Which is great, actually, but just bear in mind it won't fire if node itself crashes. In which case your `data` object probably isn't ready to save anyway, right?
 
 * You don't want to use this in a web application. Duh. It's a simple, synchronous bit of magic for use in utilities with short execution times.
 
