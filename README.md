@@ -50,3 +50,10 @@ If you don't, the JSON file lives in the same directory with your app, and will 
 ## Credits
 
 `prettiest` was built at [P'unk Avenue](https://punkave.com).
+
+## Changelog
+
+1.0.0: accepted pull request to use newer `fs-ext` because of compilation issues on newer systems. Thanks to Kerrick. Bumped to 1.0.0 stable. Now following semver.
+
+0.1.0: initial release.
+
