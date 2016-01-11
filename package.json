@@ -1,6 +1,6 @@
 {
   "name": "prettiest",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Incredibly simple data storage and locking for command line scripts. Pairs nicely with shelljs and a nice chianti.",
   "main": "index.js",
   "scripts": {
