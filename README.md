@@ -49,9 +49,11 @@ If you don't, the JSON file lives in the same directory with your app, and will 
 
 ## Credits
 
-`prettiest` was built at [P'unk Avenue](https://punkave.com).
+`prettiest` was built for [ApostropheCMS](https://apostrophecms.com).
 
 ## Changelog
+
+1.1.0: dependency on `fs-ext` bumped to 2.0.0, in hopes of smoother cross-platform compilation than with the prereleases. Moved to `const` and `let` since they are supported back to well before currently supported versions of node.
 
 1.0.0: accepted pull request to use newer `fs-ext` because of compilation issues on newer systems. Thanks to Kerrick. Bumped to 1.0.0 stable. Now following semver.
 

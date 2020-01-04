@@ -1,12 +1,14 @@
-var fs = require('fs-ext');
-var dirname = require('path').dirname;
+const fs = require('fs');
+const flockSync = require('fs-ext').flockSync;
+const dirname = require('path').dirname;
 
 module.exports = function(options) {
-  var dir = dirname(require.main.filename);
+  const dir = dirname(require.main.filename);
   options = options || {};
-  var dataFile = options.json || (dir + '/data.json');
-  var lockFile = dataFile + '.lock';
-  var data;
+  const dataFile = options.json || (dir + '/data.json');
+  const lockFile = dataFile + '.lock';
+  let data;
+  let lockFd;
 
   // Prevent race conditions
   lock();
@@ -18,15 +20,13 @@ module.exports = function(options) {
 
   return data;
 
-  var lockFd;
-
   function lock() {
     lockFd = fs.openSync(lockFile, 'a');
-    fs.flockSync(lockFd, 'ex');
+    flockSync(lockFd, 'ex');
   }
 
   function unlock() {
-    fs.flockSync(lockFd, 'un');
+    flockSync(lockFd, 'un');
     try {
       fs.closeSync(lockFd);
       // We do NOT delete the lockfile. That can cause
@@ -43,7 +43,7 @@ module.exports = function(options) {
       data = {};
       return;
     }
-    var content = fs.readFileSync(dataFile);
+    const content = fs.readFileSync(dataFile);
     data = JSON.parse(content);
   }
 
